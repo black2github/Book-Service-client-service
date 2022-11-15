@@ -22,4 +22,9 @@ public class ClientService {
     public List<Book> data() {
         return restTemplateConnector.data();
     }
+
+    public String getInfoFromBookService() {
+        // return restTemplateConnector.getInfoFromBookService();
+        return feignConnector.getInfoFromBookService();
+    }
 }

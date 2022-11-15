@@ -8,8 +8,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Component
+// @RibbonClient(name = "book-service", configuration = RibbonConfiguration.class)
+// @RibbonClient(name = "book-service")
 public class RestTemplateConnector {
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Value("${book-service.url}/${book-service.rest}")
     private String url;
@@ -21,4 +23,13 @@ public class RestTemplateConnector {
     public List<Book> data() {
         return List.of(restTemplate.getForObject(url, Book[].class));
     }
+
+    public String getInfoFromBookService() {
+        return restTemplate.getForObject("http://book-service/", String.class);
+    }
+
+    // @LoadBalanced
+    // public RestTemplate getRestTemplate() {
+    //     return new RestTemplate();
+    // }
 }
