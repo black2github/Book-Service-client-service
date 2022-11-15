@@ -38,4 +38,9 @@ public class ClientService {
         List<Book> books = new ArrayList<>();
         return books;
     }
+
+    public String getInfoFromBookService() {
+        // return restTemplateConnector.getInfoFromBookService();
+        return feignConnector.getInfoFromBookService();
+    }
 }

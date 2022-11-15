@@ -14,8 +14,8 @@ import java.util.logging.Logger;
 public class ClientServiceController {
     Logger logger = Logger.getLogger(ClientServiceController.class.getName());
 
-    private Environment env;
-    private ClientService service;
+    private final Environment env;
+    private final ClientService service;
 
     public ClientServiceController(Environment env, ClientService service) {
         this.env = env;
@@ -39,5 +39,12 @@ public class ClientServiceController {
     public List<Book> data() {
         logger.info("Calling through RestTemplate");
         return service.data();
+    }
+
+    // for Ribbon test
+    @RequestMapping("/getInfoFromRemote")
+    public String getInfoFromBookService() {
+        logger.info("Calling getInfoFromRemote");
+        return service.getInfoFromBookService();
     }
 }
